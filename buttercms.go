@@ -13,7 +13,12 @@ const (
 )
 
 func getRequest(path string) ([]byte, error) {
-	resp, err := http.Get(API_ROOT_URL + path + "?auth_token=" + authToken)
+	url := API_ROOT_URL + path + "?auth_token=" + authToken
+
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}
