@@ -43,3 +43,14 @@ func GetAuthors() (*AuthorAPIResponse, error) {
 	}
 	return resp, err
 }
+
+func GetCategories() (*CategoryAPIResponse, error) {
+	body, err := getRequest("categories")
+
+	var resp = new(CategoryAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
