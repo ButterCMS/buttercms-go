@@ -14,7 +14,3 @@ type Author struct {
 	TwitterHandle string `json:"twitter_handle"`
 	ProfileImage  string `json:"profile_image"`
 }
-
-type AuthorAPIResponse struct {
-	AuthorList []Author `json:"data"`
-}

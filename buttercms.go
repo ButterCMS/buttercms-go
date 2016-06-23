@@ -38,6 +38,17 @@ func SetAuthToken(token string) {
 	authToken = token
 }
 
+func GetPosts() (*PostAPIResponse, error) {
+	body, err := getRequest("posts")
+
+	var resp = new(PostAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
 func GetAuthors() (*AuthorAPIResponse, error) {
 	body, err := getRequest("authors")
 
