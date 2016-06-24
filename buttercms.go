@@ -67,8 +67,19 @@ func SearchPosts(query string) (*PostAPIResponse, error) {
 	return resp, err
 }
 
-func GetPosts() (*PostAPIResponse, error) {
+func GetPosts() (*PostsAPIResponse, error) {
 	body, err := getRequest("posts", nil)
+
+	var resp = new(PostsAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
+func GetPost(slug string) (*PostAPIResponse, error) {
+	body, err := getRequest("posts/"+slug, nil)
 
 	var resp = new(PostAPIResponse)
 	err = json.Unmarshal(body, &resp)

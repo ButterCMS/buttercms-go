@@ -1,14 +1,24 @@
 package ButterCMS
 
-type APIMeta struct {
+type PostsMeta struct {
 	Count        int `json:"count"`
 	NextPage     int `json:"next_page"`
 	PreviousPage int `json:"previous_page"`
 }
 
+type PostsAPIResponse struct {
+	MetaData PostsMeta `json:"meta"`
+	PostList []Post    `json:"data"`
+}
+
+type PostMeta struct {
+	NextPost     Post `json:"next_post"`
+	PreviousPost Post `json:"previous_post"`
+}
+
 type PostAPIResponse struct {
-	MetaData APIMeta `json:"meta"`
-	PostList []Post  `json:"data"`
+	MetaData PostMeta `json:"meta"`
+	Post     Post     `json:"data"`
 }
 
 type CategoryAPIResponse struct {
