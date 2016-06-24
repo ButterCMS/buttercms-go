@@ -44,6 +44,17 @@ func SetAuthToken(token string) {
 	authToken = token
 }
 
+func GetFeed(feedType string) (*FeedAPIResponse, error) {
+	body, err := getRequest("feeds/"+feedType, nil)
+
+	var resp = new(FeedAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
 func SearchPosts(query string) (*PostAPIResponse, error) {
 	params := map[string]string{"query": query}
 	body, err := getRequest("search", params)

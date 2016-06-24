@@ -18,3 +18,7 @@ type CategoryAPIResponse struct {
 type AuthorAPIResponse struct {
 	AuthorList []Author `json:"data"`
 }
+
+type FeedAPIResponse struct {
+	Data string `json:"data"`
+}
