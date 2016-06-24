@@ -89,8 +89,19 @@ func GetPost(slug string) (*PostAPIResponse, error) {
 	return resp, err
 }
 
-func GetAuthors() (*AuthorAPIResponse, error) {
+func GetAuthors() (*AuthorsAPIResponse, error) {
 	body, err := getRequest("authors", nil)
+
+	var resp = new(AuthorsAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
+func GetAuthor(slug string) (*AuthorAPIResponse, error) {
+	body, err := getRequest("authors/"+slug, nil)
 
 	var resp = new(AuthorAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -100,8 +111,19 @@ func GetAuthors() (*AuthorAPIResponse, error) {
 	return resp, err
 }
 
-func GetCategories() (*CategoryAPIResponse, error) {
+func GetCategories() (*CategoriesAPIResponse, error) {
 	body, err := getRequest("categories", nil)
+
+	var resp = new(CategoriesAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
+func GetCategory(slug string) (*CategoryAPIResponse, error) {
+	body, err := getRequest("categories/"+slug, nil)
 
 	var resp = new(CategoryAPIResponse)
 	err = json.Unmarshal(body, &resp)

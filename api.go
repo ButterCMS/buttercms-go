@@ -1,5 +1,6 @@
 package ButterCMS
 
+// Posts
 type PostsMeta struct {
 	Count        int `json:"count"`
 	NextPage     int `json:"next_page"`
@@ -21,14 +22,25 @@ type PostAPIResponse struct {
 	Post     Post     `json:"data"`
 }
 
-type CategoryAPIResponse struct {
+// Categories
+type CategoriesAPIResponse struct {
 	CategoryList []Category `json:"data"`
 }
 
-type AuthorAPIResponse struct {
+type CategoryAPIResponse struct {
+	Category Category `json:"data"`
+}
+
+// Authors
+type AuthorsAPIResponse struct {
 	AuthorList []Author `json:"data"`
 }
 
+type AuthorAPIResponse struct {
+	Author Author `json:"data"`
+}
+
+// Feed
 type FeedAPIResponse struct {
 	Data string `json:"data"`
 }
