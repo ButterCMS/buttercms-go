@@ -55,11 +55,11 @@ func GetFeed(feedType string) (*FeedAPIResponse, error) {
 	return resp, err
 }
 
-func SearchPosts(query string) (*PostAPIResponse, error) {
-	params := map[string]string{"query": query}
+func SearchPosts(query string, page int) (*PostsAPIResponse, error) {
+	params := map[string]string{"query": query, "page": string(page)}
 	body, err := getRequest("search", params)
 
-	var resp = new(PostAPIResponse)
+	var resp = new(PostsAPIResponse)
 	err = json.Unmarshal(body, &resp)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,12 @@ func GetPost(slug string) (*PostAPIResponse, error) {
 	return resp, err
 }
 
-func GetAuthors() (*AuthorsAPIResponse, error) {
-	body, err := getRequest("authors", nil)
+func GetAuthors(includeRecentPosts bool) (*AuthorsAPIResponse, error) {
+	params := make(map[string]string)
+	if includeRecentPosts {
+		params = map[string]string{"include": "recent_posts"}
+	}
+	body, err := getRequest("authors", params)
 
 	var resp = new(AuthorsAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -111,8 +115,12 @@ func GetAuthor(slug string) (*AuthorAPIResponse, error) {
 	return resp, err
 }
 
-func GetCategories() (*CategoriesAPIResponse, error) {
-	body, err := getRequest("categories", nil)
+func GetCategories(includeRecentPosts bool) (*CategoriesAPIResponse, error) {
+	params := make(map[string]string)
+	if includeRecentPosts {
+		params = map[string]string{"include": "recent_posts"}
+	}
+	body, err := getRequest("categories", params)
 
 	var resp = new(CategoriesAPIResponse)
 	err = json.Unmarshal(body, &resp)

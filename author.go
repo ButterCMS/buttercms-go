@@ -13,4 +13,5 @@ type Author struct {
 	InstagramUrl  string `json:"instagram_url"`
 	TwitterHandle string `json:"twitter_handle"`
 	ProfileImage  string `json:"profile_image"`
+	RecentPosts   []Post `json:"recent_posts"`
 }
