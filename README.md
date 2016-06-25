@@ -21,7 +21,7 @@ ButterCMS.GetCategory("slug")
 ```
 
 ## Usage
-To include this package in your Go code, simple use `import "ButterCMS"` at the top of your file
+To include this package in your Go code, simply use `import "ButterCMS"` at the top of your file
 
 ## Example Usage
 ```
@@ -35,12 +35,12 @@ import (
 func main() {
 	ButterCMS.SetAuthToken("<auth_token>")
 
-	authorResp, err := ButterCMS.GetAuthors()
+	resp, err := ButterCMS.GetAuthors()
 	if err != nil {
 		panic(err.Error())
 	}
 
-	fmt.Printf("%+v\n", authorResp)
+	fmt.Printf("%+v\n", resp)
 }
 
 ```

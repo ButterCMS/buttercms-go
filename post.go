@@ -1,7 +1,13 @@
 package ButterCMS
 
+import (
+	"time"
+)
+
 type Post struct {
 	URL             string     `json:"url"`
+	Created         time.Time  `json:"created"`
+	Published       time.Time  `json:"published"`
 	Author          Author     `json:"author"`
 	CategoryList    []Category `json:"categories"`
 	FeaturedImage   string     `json:"featured_image"`
