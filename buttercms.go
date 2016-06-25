@@ -2,6 +2,7 @@ package ButterCMS
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net/http"
 )
@@ -13,6 +14,10 @@ const (
 )
 
 func getRequest(path string, params map[string]string) ([]byte, error) {
+	if "" == authToken {
+		return nil, errors.New("No auth token set")
+	}
+
 	client := &http.Client{}
 	req, _ := http.NewRequest("GET", API_ROOT_URL+path, nil)
 	req.Header.Set("Content-Type", "application/json")
@@ -30,6 +35,10 @@ func getRequest(path string, params map[string]string) ([]byte, error) {
 	}
 	defer resp.Body.Close()
 
+	if http.StatusOK != resp.StatusCode {
+		return nil, errors.New(http.StatusText(resp.StatusCode))
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
@@ -46,6 +55,9 @@ func SetAuthToken(token string) {
 
 func GetFeed(feedType string) (*FeedAPIResponse, error) {
 	body, err := getRequest("feeds/"+feedType, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(FeedAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -58,6 +70,9 @@ func GetFeed(feedType string) (*FeedAPIResponse, error) {
 func SearchPosts(query string, page int) (*PostsAPIResponse, error) {
 	params := map[string]string{"query": query, "page": string(page)}
 	body, err := getRequest("search", params)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(PostsAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -69,6 +84,9 @@ func SearchPosts(query string, page int) (*PostsAPIResponse, error) {
 
 func GetPosts() (*PostsAPIResponse, error) {
 	body, err := getRequest("posts", nil)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(PostsAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -80,6 +98,9 @@ func GetPosts() (*PostsAPIResponse, error) {
 
 func GetPost(slug string) (*PostAPIResponse, error) {
 	body, err := getRequest("posts/"+slug, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(PostAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -92,9 +113,12 @@ func GetPost(slug string) (*PostAPIResponse, error) {
 func GetAuthors(includeRecentPosts bool) (*AuthorsAPIResponse, error) {
 	params := make(map[string]string)
 	if includeRecentPosts {
-		params = map[string]string{"include": "recent_posts"}
+		params["include"] = "recent_posts"
 	}
 	body, err := getRequest("authors", params)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(AuthorsAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -106,6 +130,9 @@ func GetAuthors(includeRecentPosts bool) (*AuthorsAPIResponse, error) {
 
 func GetAuthor(slug string) (*AuthorAPIResponse, error) {
 	body, err := getRequest("authors/"+slug, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(AuthorAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -118,9 +145,12 @@ func GetAuthor(slug string) (*AuthorAPIResponse, error) {
 func GetCategories(includeRecentPosts bool) (*CategoriesAPIResponse, error) {
 	params := make(map[string]string)
 	if includeRecentPosts {
-		params = map[string]string{"include": "recent_posts"}
+		params["include"] = "recent_posts"
 	}
 	body, err := getRequest("categories", params)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(CategoriesAPIResponse)
 	err = json.Unmarshal(body, &resp)
@@ -132,6 +162,9 @@ func GetCategories(includeRecentPosts bool) (*CategoriesAPIResponse, error) {
 
 func GetCategory(slug string) (*CategoryAPIResponse, error) {
 	body, err := getRequest("categories/"+slug, nil)
+	if err != nil {
+		return nil, err
+	}
 
 	var resp = new(CategoryAPIResponse)
 	err = json.Unmarshal(body, &resp)
