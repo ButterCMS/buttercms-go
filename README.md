@@ -7,14 +7,17 @@ This wrapper is meant to enable Go developers to quickly and easily get up and r
 ButterCMS.GetFeed("feedType")
 
 // Posts
+ButterCMS.SearchPosts("query", page) // page should be an integer
 ButterCMS.GetPosts()
-ButterCMS.SearchPosts("query")
+ButterCMS.GetPost("slug")
 
 // Authors
-ButterCMS.GetAuthors()
+ButterCMS.GetAuthors(true|false) // To include recent posts or not
+ButterCMS.GetAuthor("slug")
 
 // Categories
-ButterCMS.GetCategories()
+ButterCMS.GetCategories(true|false) // To include recent posts or not
+ButterCMS.GetCategory("slug")
 ```
 
 ## Usage
