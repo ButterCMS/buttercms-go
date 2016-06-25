@@ -82,8 +82,8 @@ func SearchPosts(query string, page int) (*PostsAPIResponse, error) {
 	return resp, err
 }
 
-func GetPosts() (*PostsAPIResponse, error) {
-	body, err := getRequest("posts", nil)
+func GetPosts(params map[string]string) (*PostsAPIResponse, error) {
+	body, err := getRequest("posts", params)
 	if err != nil {
 		return nil, err
 	}

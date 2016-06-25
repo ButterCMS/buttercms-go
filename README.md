@@ -35,12 +35,20 @@ import (
 func main() {
 	ButterCMS.SetAuthToken("<auth_token>")
 
-	resp, err := ButterCMS.GetAuthors()
+	authorResp, err := ButterCMS.GetAuthors(false)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	fmt.Printf("%+v\n", resp)
+	fmt.Printf("%+v\n", authorResp)
+
+	params := map[string]string{"author_slug": "author-slug"}
+	postResp, err := ButterCMS.GetPosts(params)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Printf("%+v\n", postResp)
 }
 
 ```
