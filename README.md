@@ -24,7 +24,7 @@ ButterCMS.GetCategory("slug")
 To include this package in your Go code, simply use `import "ButterCMS"` at the top of your file
 
 ## Example Usage
-```
+```go
 package main
 
 import (
@@ -50,5 +50,4 @@ func main() {
 
 	fmt.Printf("%+v\n", postResp)
 }
-
 ```
