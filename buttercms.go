@@ -67,8 +67,8 @@ func GetFeed(feedType string) (*FeedAPIResponse, error) {
 	return resp, err
 }
 
-func SearchPosts(query string, page int) (*PostsAPIResponse, error) {
-	params := map[string]string{"query": query, "page": string(page)}
+func SearchPosts(query string, params map[string]string) (*PostsAPIResponse, error) {
+	params["query"] = query
 	body, err := getRequest("search", params)
 	if err != nil {
 		return nil, err
@@ -110,11 +110,7 @@ func GetPost(slug string) (*PostAPIResponse, error) {
 	return resp, err
 }
 
-func GetAuthors(includeRecentPosts bool) (*AuthorsAPIResponse, error) {
-	params := make(map[string]string)
-	if includeRecentPosts {
-		params["include"] = "recent_posts"
-	}
+func GetAuthors(params map[string]string) (*AuthorsAPIResponse, error) {
 	body, err := getRequest("authors", params)
 	if err != nil {
 		return nil, err
@@ -128,8 +124,8 @@ func GetAuthors(includeRecentPosts bool) (*AuthorsAPIResponse, error) {
 	return resp, err
 }
 
-func GetAuthor(slug string) (*AuthorAPIResponse, error) {
-	body, err := getRequest("authors/"+slug, nil)
+func GetAuthor(slug string, params map[string]string) (*AuthorAPIResponse, error) {
+	body, err := getRequest("authors/"+slug, params)
 	if err != nil {
 		return nil, err
 	}
@@ -142,11 +138,7 @@ func GetAuthor(slug string) (*AuthorAPIResponse, error) {
 	return resp, err
 }
 
-func GetCategories(includeRecentPosts bool) (*CategoriesAPIResponse, error) {
-	params := make(map[string]string)
-	if includeRecentPosts {
-		params["include"] = "recent_posts"
-	}
+func GetCategories(params map[string]string) (*CategoriesAPIResponse, error) {
 	body, err := getRequest("categories", params)
 	if err != nil {
 		return nil, err
@@ -160,8 +152,8 @@ func GetCategories(includeRecentPosts bool) (*CategoriesAPIResponse, error) {
 	return resp, err
 }
 
-func GetCategory(slug string) (*CategoryAPIResponse, error) {
-	body, err := getRequest("categories/"+slug, nil)
+func GetCategory(slug string, params map[string]string) (*CategoryAPIResponse, error) {
+	body, err := getRequest("categories/"+slug, params)
 	if err != nil {
 		return nil, err
 	}
