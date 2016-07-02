@@ -4,20 +4,22 @@ This wrapper is meant to enable Go developers to quickly and easily get up and r
 ## Available API Methods
 ```
 // Feeds
-ButterCMS.GetFeed("feedType")
+ButterCMS.GetFeed("rss|atom|sitemap")
 
 // Posts
-ButterCMS.SearchPosts("query", page) // page should be an integer
-ButterCMS.GetPosts()
+params := map[string]string{"page": "2"}
+ButterCMS.SearchPosts("query", params)
+ButterCMS.GetPosts(params)
 ButterCMS.GetPost("slug")
 
 // Authors
-ButterCMS.GetAuthors(true|false) // To include recent posts or not
-ButterCMS.GetAuthor("slug")
+params = map[string]string{"include": "recent_posts"}
+ButterCMS.GetAuthors(params)
+ButterCMS.GetAuthor("slug", params)
 
 // Categories
-ButterCMS.GetCategories(true|false) // To include recent posts or not
-ButterCMS.GetCategory("slug")
+ButterCMS.GetCategories(params)
+ButterCMS.GetCategory("slug", params)
 ```
 
 ## Usage
@@ -35,14 +37,15 @@ import (
 func main() {
 	ButterCMS.SetAuthToken("<auth_token>")
 
-	authorResp, err := ButterCMS.GetAuthors(false)
+	params := map[string]string{"include": "recent_posts"}
+	authorResp, err := ButterCMS.GetAuthors(params)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	fmt.Printf("%+v\n", authorResp)
 
-	params := map[string]string{"author_slug": "author-slug"}
+	params = map[string]string{"author_slug": "author-slug"}
 	postResp, err := ButterCMS.GetPosts(params)
 	if err != nil {
 		panic(err.Error())
