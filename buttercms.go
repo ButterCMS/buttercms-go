@@ -1,6 +1,7 @@
 package ButterCMS
 
 import (
+	"strings"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
@@ -159,6 +160,21 @@ func GetCategory(slug string, params map[string]string) (*CategoryAPIResponse, e
 	}
 
 	var resp = new(CategoryAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
+func GetContentFields(keys []string) (*ContentFieldsAPIResponse, error) {
+	params := map[string]string{"keys": strings.Join(keys, ",")}
+	body, err := getRequest("content", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var resp = new(ContentFieldsAPIResponse)
 	err = json.Unmarshal(body, &resp)
 	if err != nil {
 		return nil, err

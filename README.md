@@ -20,6 +20,9 @@ ButterCMS.GetAuthor("slug", params)
 // Categories
 ButterCMS.GetCategories(params)
 ButterCMS.GetCategory("slug", params)
+
+// Content Fields
+ButterCMS.GetContentFields([]string{"content-field-slug"})
 ```
 
 ## Usage

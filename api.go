@@ -44,3 +44,8 @@ type AuthorAPIResponse struct {
 type FeedAPIResponse struct {
 	Data string `json:"data"`
 }
+
+// Content Fields
+type ContentFieldsAPIResponse struct {
+	Data map[string]string `json:"data"`
+}
