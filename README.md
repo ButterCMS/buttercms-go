@@ -1,5 +1,20 @@
-## ButterCMS Go API Wrapper
+# ButterCMS Go API Wrapper
+
 This wrapper is meant to enable Go developers to quickly and easily get up and running with [ButterCMS](https://buttercms.com/). It is based of off the [API documentation](https://buttercms.com/docs/api/).
+
+## Versioning
+
+Each revision of the binding is tagged and the version is updated accordingly.
+
+Given Go's lack of built-in versioning, it is highly recommended you use a
+[package management tool][https://github.com/golang/go/wiki/PackageManagementTools] in order to ensure a newer
+version of the binding does not affect backwards compatibility.
+
+## Installation
+
+```sh
+go get github.com/buttercms/buttercms-go
+```
 
 ## Available API Methods
 ```
@@ -26,9 +41,11 @@ ButterCMS.GetContentFields([]string{"content-field-slug"})
 ```
 
 ## Usage
+
 To include this package in your Go code, simply use `import "ButterCMS"` at the top of your file
 
 ## Example Usage
+
 ```go
 package main
 
