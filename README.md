@@ -50,7 +50,7 @@ To include this package in your Go code, simply use `import "ButterCMS"` at the 
 package main
 
 import (
-	"ButterCMS"
+	"github.com/buttercms/buttercms-go"
 	"fmt"
 )
 
