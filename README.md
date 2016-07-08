@@ -7,7 +7,7 @@ This wrapper is meant to enable Go developers to quickly and easily get up and r
 Each revision of the binding is tagged and the version is updated accordingly.
 
 Given Go's lack of built-in versioning, it is highly recommended you use a
-[package management tool][https://github.com/golang/go/wiki/PackageManagementTools] in order to ensure a newer
+[package management tool](https://github.com/golang/go/wiki/PackageManagementTools) in order to ensure a newer
 version of the binding does not affect backwards compatibility.
 
 ## Installation
