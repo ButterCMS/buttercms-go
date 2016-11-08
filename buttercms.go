@@ -167,6 +167,34 @@ func GetCategory(slug string, params map[string]string) (*CategoryAPIResponse, e
 	return resp, err
 }
 
+func GetTags(params map[string]string) (*TagsAPIResponse, error) {
+	body, err := getRequest("tags", params)
+	if err != nil {
+		return nil, err
+	}
+
+	var resp = new(TagsAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
+func GetTag(slug string, params map[string]string) (*TagAPIResponse, error) {
+	body, err := getRequest("tags/"+slug, params)
+	if err != nil {
+		return nil, err
+	}
+
+	var resp = new(TagAPIResponse)
+	err = json.Unmarshal(body, &resp)
+	if err != nil {
+		return nil, err
+	}
+	return resp, err
+}
+
 func GetContentFields(keys []string) (*ContentFieldsAPIResponse, error) {
 	params := map[string]string{"keys": strings.Join(keys, ",")}
 	body, err := getRequest("content", params)

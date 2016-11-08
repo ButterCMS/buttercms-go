@@ -31,6 +31,15 @@ type CategoryAPIResponse struct {
 	Category Category `json:"data"`
 }
 
+// Tags
+type TagsAPIResponse struct {
+	TagList []Tag `json:"data"`
+}
+
+type TagAPIResponse struct {
+	Tag Tag `json:"data"`
+}
+
 // Authors
 type AuthorsAPIResponse struct {
 	AuthorList []Author `json:"data"`
