@@ -74,3 +74,7 @@ func main() {
 	fmt.Printf("%+v\n", postResp)
 }
 ```
+
+### Other
+
+View these Go [Blog engine](https://buttercms.com/golang-blog-engine/) and [Full CMS](https://buttercms.com/golang-cms/) for other examples of using ButterCMS with Go.
