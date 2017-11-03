@@ -72,6 +72,16 @@ func main() {
 	}
 
 	fmt.Printf("%+v\n", postResp)
+
+	pagesResp, err := ButterCMS.GetPages("news", nil)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Printf("%+v\n", pagesResp)
+	for index, page := range pagesResp.PageList {
+		fmt.Printf("%d: %+v\n", index, page.Slug)
+	}
 }
 ```
 

@@ -22,6 +22,22 @@ type PostAPIResponse struct {
 	Post     Post     `json:"data"`
 }
 
+// Pages
+type PagesMeta struct {
+	Count        int `json:"count"`
+	NextPage     int `json:"next_page"`
+	PreviousPage int `json:"previous_page"`
+}
+
+type PagesAPIResponse struct {
+	MetaData PostsMeta `json:"meta"`
+	PageList []Page    `json:"data"`
+}
+
+type PageAPIResponse struct {
+	Page Page `json:"data"`
+}
+
 // Categories
 type CategoriesAPIResponse struct {
 	CategoryList []Category `json:"data"`
