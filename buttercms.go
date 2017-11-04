@@ -253,8 +253,8 @@ func GetTag(slug string, params map[string]string) (*TagAPIResponse, error) {
 // Content Fields
 ///////////
 
-func GetContentFields(keys []string) (*ContentFieldsAPIResponse, error) {
-	params := map[string]string{"keys": strings.Join(keys, ",")}
+func GetContentFields(keys []string, params map[string]string) (*ContentFieldsAPIResponse, error) {
+	params["keys"] = strings.Join(keys, ",")
 	body, err := getRequest("content/", params)
 	if err != nil {
 		return nil, err
