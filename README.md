@@ -78,9 +78,21 @@ func main() {
 		panic(err.Error())
 	}
 
-	fmt.Printf("%+v\n", pagesResp)
+	fmt.Printf("%d Results\n", pagesResp.MetaData.Count)
 	for index, page := range pagesResp.PageList {
-		fmt.Printf("%d: %+v\n", index, page.Slug)
+		fmt.Printf("Result %d: %s\n", index, page.Slug)
+
+		if (len(page.Fields) > 0) {
+			fmt.Println("Custom fields:")
+			for fieldName, fieldValue := range page.Fields {
+				switch value := fieldValue.(type) {
+					case string:
+						fmt.Printf("Field '%1s' has value '%2s'\n", fieldName, value)
+					default:
+						fmt.Println("Other type\n")
+				}
+			}
+		}
 	}
 }
 ```

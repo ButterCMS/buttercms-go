@@ -1,15 +1,15 @@
 package ButterCMS
 
-// Posts
-type PostsMeta struct {
+type PagingMeta struct {
 	Count        int `json:"count"`
 	NextPage     int `json:"next_page"`
 	PreviousPage int `json:"previous_page"`
 }
 
+// Posts
 type PostsAPIResponse struct {
-	MetaData PostsMeta `json:"meta"`
-	PostList []Post    `json:"data"`
+	MetaData PagingMeta `json:"meta"`
+	PostList []Post     `json:"data"`
 }
 
 type PostMeta struct {
@@ -18,8 +18,8 @@ type PostMeta struct {
 }
 
 type PostAPIResponse struct {
-	MetaData PostMeta `json:"meta"`
-	Post     Post     `json:"data"`
+	MetaData PostMeta	`json:"meta"`
+	Post     Post		`json:"data"`
 }
 
 // Pages
@@ -30,8 +30,8 @@ type PagesMeta struct {
 }
 
 type PagesAPIResponse struct {
-	MetaData PostsMeta `json:"meta"`
-	PageList []Page    `json:"data"`
+	MetaData PagingMeta	`json:"meta"`
+	PageList []Page		`json:"data"`
 }
 
 type PageAPIResponse struct {
