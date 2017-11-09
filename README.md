@@ -16,14 +16,30 @@ version of the binding does not affect backwards compatibility.
 go get github.com/buttercms/buttercms-go
 ```
 
-## Available API Methods
+## Pages
 ```
-// Feeds
-ButterCMS.GetFeed("rss|atom|sitemap")
+params := map[string]string{"foo": "bar"}
+ButterCMS.GetPages("news", params)
+ButterCMS.GetPage("news", "another-test-page", params)
+```
 
+## Content Fields
+```
+ButterCMS.GetContentFields([]string{"content-field-slug"})
+
+// Test Mode
+params := map[string]string{"test": 1}
+ButterCMS.GetContentFields([]string{"content-field-slug"}, params)
+
+// Localization
+params := map[string]string{"locale": "en"}
+ButterCMS.GetContentFields([]string{"content-field-slug"}, params)
+```
+
+## Blog Engine
+```
 // Posts
 params := map[string]string{"page": "2"}
-ButterCMS.SearchPosts("query", params)
 ButterCMS.GetPosts(params)
 ButterCMS.GetPost("slug")
 
@@ -36,8 +52,11 @@ ButterCMS.GetAuthor("slug", params)
 ButterCMS.GetCategories(params)
 ButterCMS.GetCategory("slug", params)
 
-// Content Fields
-ButterCMS.GetContentFields([]string{"content-field-slug"})
+// Feeds
+ButterCMS.GetFeed("rss|atom|sitemap")
+
+// Search
+ButterCMS.SearchPosts("query", params)
 ```
 
 ## Usage
