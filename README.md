@@ -17,23 +17,22 @@ go get github.com/buttercms/buttercms-go
 ```
 
 ## Pages
+
+Full list of `params` availble in our official [API Documentation](https://buttercms.com/docs/api/?go#pages)
+
 ```
 params := map[string]string{"foo": "bar"}
 ButterCMS.GetPages("news", params)
 ButterCMS.GetPage("news", "another-test-page", params)
 ```
 
-## Content Fields
+## Collections
+
+Full list of `params` availble in our official [API Documentation](https://buttercms.com/docs/api/?go#collections)
+
 ```
-ButterCMS.GetContentFields([]string{"content-field-slug"})
-
-// Test Mode
-params := map[string]string{"test": 1}
-ButterCMS.GetContentFields([]string{"content-field-slug"}, params)
-
-// Localization
 params := map[string]string{"locale": "en"}
-ButterCMS.GetContentFields([]string{"content-field-slug"}, params)
+ButterCMS.GetContentFields([]string{"collection_key"}, params)
 ```
 
 ## Blog Engine
