@@ -72,5 +72,5 @@ type FeedAPIResponse struct {
 
 // Content Fields
 type ContentFieldsAPIResponse struct {
-	Data map[string]string `json:"data"`
+	Data map[string]interface{} `json:"data"`
 }

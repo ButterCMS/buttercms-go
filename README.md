@@ -70,6 +70,7 @@ package main
 import (
 	"github.com/buttercms/buttercms-go"
 	"fmt"
+	"encoding/json"
 )
 
 func main() {
@@ -112,6 +113,20 @@ func main() {
 			}
 		}
 	}
+
+	contentParams := map[string]string{}
+	contentKeys := []string{"somethings"}
+	contentResp, err := ButterCMS.GetContentFields(contentKeys, contentParams)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	j, err := json.Marshal(contentResp)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(string(j))
 }
 ```
 
