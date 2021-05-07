@@ -18,8 +18,8 @@ type PostMeta struct {
 }
 
 type PostAPIResponse struct {
-	MetaData PostMeta	`json:"meta"`
-	Post     Post		`json:"data"`
+	MetaData PostMeta `json:"meta"`
+	Post     Post     `json:"data"`
 }
 
 // Pages
@@ -30,8 +30,8 @@ type PagesMeta struct {
 }
 
 type PagesAPIResponse struct {
-	MetaData PagingMeta	`json:"meta"`
-	PageList []Page		`json:"data"`
+	MetaData PagingMeta `json:"meta"`
+	PageList []Page     `json:"data"`
 }
 
 type PageAPIResponse struct {
