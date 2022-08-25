@@ -10,6 +10,7 @@ type Post struct {
 	Published        time.Time  `json:"published"`
 	Author           Author     `json:"author"`
 	CategoryList     []Category `json:"categories"`
+	TagList          []Tag      `json:"tags"`
 	FeaturedImage    string     `json:"featured_image"`
 	FeaturedImageAlt string     `json:"featured_image_alt"`
 	Slug             string     `json:"slug"`
