@@ -1,17 +1,19 @@
 package ButterCMS
 
 import (
-	"strings"
 	"encoding/json"
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 var authToken string
 
+var preview bool
+
 const (
-	VERSION = "2.3.0"
+	VERSION      = "2.3.0"
 	API_ROOT_URL = "https://api.buttercms.com/v2/"
 )
 
@@ -30,6 +32,11 @@ func getRequest(path string, params map[string]string) ([]byte, error) {
 	for k := range params {
 		q.Add(k, params[k])
 	}
+
+	if preview {
+		q.Add("preview", "1")
+	}
+
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := client.Do(req)
@@ -54,6 +61,10 @@ func getRequest(path string, params map[string]string) ([]byte, error) {
 
 func SetAuthToken(token string) {
 	authToken = token
+}
+
+func SetPreviewMode(inPreview bool) {
+	preview = inPreview
 }
 
 ///////////

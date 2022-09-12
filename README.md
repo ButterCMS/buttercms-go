@@ -61,6 +61,16 @@ ButterCMS.SearchPosts("query", params)
 
 To include this package in your Go code, simply use `import "ButterCMS"` at the top of your file
 
+### Preview mode
+
+Preview mode can be used to setup a staging website for previewing content fields or for testing content during localdevelopment. To fetch content from preview mode call `ButterCMS.SetPreviewMode` with `true` input:
+
+```go
+package main
+...
+ButterCMS.SetPreviewMode(true)
+```
+
 ## Example Usage
 
 ```go
