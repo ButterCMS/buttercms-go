@@ -4,6 +4,14 @@ import (
 	"time"
 )
 
+type PostStatus string
+
+const (
+	PostStatusDraft     PostStatus = "draft"
+	PostStatusPublished PostStatus = "published"
+	PostStatusScheduled PostStatus = "scheduled"
+)
+
 type Post struct {
 	URL              string     `json:"url"`
 	Created          time.Time  `json:"created"`
@@ -19,5 +27,6 @@ type Post struct {
 	Summary          string     `json:"summary"`
 	SEOTitle         string     `json:"seo_title"`
 	MetaDescription  string     `json:"meta_description"`
-	Status           string     `json:"status"`
+	Status           PostStatus `json:"status"`
+	Scheduled        time.Time  `json:"scheduled,omitempty"`
 }
