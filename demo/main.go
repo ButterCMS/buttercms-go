@@ -31,4 +31,15 @@ func main() {
 	fmt.Printf("Page Slug: %s\n", page.Page.Slug)
 	fmt.Printf("Page Status: %s\n", page.Page.Status)
 	fmt.Printf("Page Scheduled Date: %s\n", page.Page.Scheduled)
+
+	// Fetch a single post
+	post, err := ButterCMS.GetPost("test-blog-post")
+	if err != nil {
+		log.Fatalf("Error fetching post: %v", err)
+	}
+
+	// Print the results to console
+	fmt.Printf("Post Slug: %s\n", post.Post.Slug)
+	fmt.Printf("Post Status: %s\n", post.Post.Status)
+	fmt.Printf("Post Scheduled Date: %s\n", post.Post.Scheduled)
 }
