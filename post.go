@@ -14,8 +14,8 @@ const (
 
 type Post struct {
 	URL              string     `json:"url"`
-	Created          time.Time  `json:"created"`
-	Published        time.Time  `json:"published"`
+	Created          *time.Time `json:"created"`
+	Published        *time.Time `json:"published"`
 	Author           Author     `json:"author"`
 	CategoryList     []Category `json:"categories"`
 	TagList          []Tag      `json:"tags"`
@@ -28,5 +28,6 @@ type Post struct {
 	SEOTitle         string     `json:"seo_title"`
 	MetaDescription  string     `json:"meta_description"`
 	Status           PostStatus `json:"status"`
-	Scheduled        time.Time  `json:"scheduled,omitempty"`
+	Updated          *time.Time `json:"updated,omitempty"`
+	Scheduled        *time.Time `json:"scheduled,omitempty"`
 }

@@ -17,5 +17,7 @@ type Page struct {
 	PageType  string                 `json:"page_type"`
 	Fields    map[string]interface{} `json:"fields"`
 	Status    PageStatus             `json:"status"`
-	Scheduled time.Time              `json:"scheduled,omitempty"`
+	Published *time.Time             `json:"published,omitempty"`
+	Updated   *time.Time             `json:"updated,omitempty"`
+	Scheduled *time.Time             `json:"scheduled,omitempty"`
 }
