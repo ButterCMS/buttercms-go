@@ -3,8 +3,10 @@ package ButterCMS
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
+	"net/url"
+	"os"
 	"strings"
 )
 
@@ -14,16 +16,29 @@ var preview bool
 
 const (
 	VERSION      = "2.3.0"
-	API_ROOT_URL = "https://api.buttercms.com/v2/"
+	API_BASE_URL = "https://api.buttercms.com/"
+	V2_ENDPOINT  = "/v2"
 )
 
+var ENV_BASE_URL = os.Getenv("API_BASE_URL")
+
 func getRequest(path string, params map[string]string) ([]byte, error) {
-	if "" == authToken {
-		return nil, errors.New("No auth token set")
+	if authToken == "" {
+		return nil, errors.New("no auth token set")
 	}
 
-	client := &http.Client{}
-	req, _ := http.NewRequest("GET", API_ROOT_URL+path, nil)
+	client := http.DefaultClient
+	baseUrl := API_BASE_URL
+	if ENV_BASE_URL != "" {
+		baseUrl = ENV_BASE_URL
+	}
+
+	url, err := url.JoinPath(baseUrl, V2_ENDPOINT, path)
+	if err != nil {
+		return nil, err
+	}
+
+	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("X-Butter-Client", "Go/"+VERSION)
 
@@ -49,7 +64,7 @@ func getRequest(path string, params map[string]string) ([]byte, error) {
 		return nil, errors.New(http.StatusText(resp.StatusCode))
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
